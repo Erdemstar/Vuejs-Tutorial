@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js" ></script>
+    <title>Data Binding</title>
+</head>
+<body>
+    <div id="test">
+        <h1> {{ name }} </h1>
+        <h1> {{ job }} </h1>
+        <a v-bind:href="myBlog">myBlog</a>
+        <a :href="myBlog">myBlog2</a>
+        <p v-html="google"></p>
+        <h1> {{ whatsmyname() }} </h1>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
