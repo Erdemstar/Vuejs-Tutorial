@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js" ></script>
+    <title>Conditionals</title>
+</head>
+<body>
+    <div id="test">
+        <input type="text" v-model="age">
+        <p v-if="age < 20">Your age is smallter then 20's</p>
+        <p v-else-if="age >= 21">Your age is bigger then 21's</p>
+
+        <p v-show="age < 20">Yaşın 20'den küçük</p>
+        <p v-show="age >= 21">Yaşın 20'den büyük</p>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

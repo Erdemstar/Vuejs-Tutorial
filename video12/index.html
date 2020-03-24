@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Looping</title>
+</head>
+
+<body>
+    <div id="test">
+        <div v-for="(name,index) in names">
+            <p>{{ index +1 }} {{ name }}</p>
+        </div>
+
+        <template v-for="(job,index) in jobs">
+            <p> {{ job.name }} </p>
+        </template>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

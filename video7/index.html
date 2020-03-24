@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js" ></script>
+    <title>Keyboard Events</title>
+</head>
+<body>
+    <div id="test">
+        <h1>{{ projectName }}</h1>
+        <input v-on:keyup.enter="ender">
+        <input v-on:keyup.delete="backspace">
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
