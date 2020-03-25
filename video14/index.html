@@ -7,6 +7,18 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="firstVue">
+        <h1> {{ title }} </h1>
+        <button v-on:click="greeting()"> {{ buttonName }}</button>
+    </div>
+
+    <div id="secondVue">
+        <h1> {{ title }} </h1>
+        <button v-on:click="greeting()"> {{ buttonName }}</button>
+        <button v-on:click.once="changeFirstVueTitle()">Change firstVueInstance title name </button>
+    </div>
+
+
     <script src="app.js"></script>
 </body>
 </html>

@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../vue.js" ></script>
-    <title>Document</title>
+    <script src="../vue.js"></script>
+    <title>Refs</title>
 </head>
+
 <body>
+    <div id="test">
+        <form>
+            <input ref="fname" placeholder="What's your firstname">
+            <input ref="lname" placeholder="What's your lastname">
+            <button type="menu" v-on:click="submit">Submit</button>
+        </form>
+
+    </div>
     <script src="app.js"></script>
 </body>
+
 </html>
