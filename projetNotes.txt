@@ -1,0 +1,136 @@
+Video17 -> Hızlıcı vuejs'i terminala kurduk ve genel olarak ekranları gösteri.
+    1.) npm install -g @vue-cli --> vuejs indirmek için
+    2.) vue init webpack-simple vuejs-plalist -> burada hızlıca webpack-simple template kullanarak basitçe playlist adında bir proje oluşturdu
+    3.) playlist içerisine girip npm install diyerek bağımlılıkları kurduk
+    4.) npm run dev diyerek projeyi ayağa kaldırdı
+
+Video18 -> Burada genel olarak proje yapısını inceledik ve birazda app.vue ile uğraştık
+    1.) src içerisinde assets dosyası olduğunu ve buraya imagelerin koyuabilecğeini söyledi
+    2.) Yine src altında appv.ve ve main js olduğunu gördük.
+        2.a) app.vue --> burada bir anladığıma göre (burasını netleştir) bir component yapısı oluşturulmuş ve içerisine 
+            vue js kodları gömülmüş. İlk açıldığında template'leri görebiliyoruz. Burası app.veu'nın çalışma alanı olarak
+            kullandığı kısım. Daha sonra export default içerisinde component (burasını netleştir) oluşturulmuş ve template
+            kısmı buradan besleniyor ve aşağıda sonra olarak css komutları barındırılıyor.
+        2.b) main.js --> Burada 2 tane import görüyorsun ilk node_modules'lerin içerisinden diğer ise app.vue'u import etmektedir.
+            Daha sonra bir vue nesnesi oluştumuş ve tag olarak "#app" verdiğini ve render olarak'da app.vue'yı render etmesi 
+            gerektiğini anlatan bir komut gördük. Burada main.js app.js ve index.html ara katman olarak gelip hızlıcı app.js'i okuyup
+            daha sonra bunu index.html basıyor.
+
+Video19 -> Nesting component burada birden fazla parçalı component oluştumuş bunu local yada global şekilde mevcut projeyle
+        entegre etmeye gösteri. Ben örnek olarak statik.vue ve dinamik.vue adında oluşturdum. Daha sonra dinamik olan için
+        genel olarak yapıyı oluşturup main.js içerisine tanımlayıp import ettim sonra app.vue içerisine ilgili isimle tagini açtım
+        . Benzer mantıkla Statik vue'yi doğruan app.vue içerisine ekleyip app.vue'nun kendi objesi içersine alanı açıp dahil ettim.
+
+Video20 -> Component CSS (Scoped) her bir *.vue içerisinde genel olarak template , script ve style tagları mevcut ve genelde
+    style içerisine birşeyler yazarsın ve bu yazdıkların template içerisindekinin görütüsünün değiştirir. Fakat bunlar ana 
+    main.js'de bir araya getirilip index.html tarafta ekrana basıldığında css komutları birbirini ezebilir. Arka planda olan
+    her *.vue için index.html <style src> açılır ve tek tek import edilir tarayıcı bunlara baktığında eğer aynı taglar varsa
+    en alta olan üstekiler ezer şeklide gider --> {a.vue -> h1 -> color:red ,b.vue -> h1 -> color:bue }  } Bu sorunu çözmek içerisine
+    *.vue içerisine girip <style scoped> yapmak yeterli olacaktır. Fakat burada benim aklıma ilk gelen *.vue içerine id verip
+    onun göre css yazmaktır. {<div id="main"> , #main h1 { color:red} } şeklinde yapmak daha sağlıklı geldi (Css.vue içerisinde yaptım)
+    App.vue'de h1'lerin rengini değiştiridim (burada scoped kullandım) , Css.vue ise id mantığıyla yaptım
+
+------------------------------------
+
+Video21 -> İçin Video 21 adlı bir klasör açıyorum. Genel olarak burada 3 tane component oluşturup Header Inder Footer adında daha sonra
+    bir projede birden fazla component nasıl kullanılır onu görmüş oldum.
+
+Video22 -> Burada genel olarak en çok tekrar edilen dataların vue nesneleri arasında props yapısı ile aktarıldığı anlatışmıştır.
+    Ornek vermek gerekirse bir isim listen var ve sayfaının farklı bölglerine yazdırıyorsun bunu. Bu nesne verisini root vue'da
+    tutup bu dataları problar yardımıyla child tarafa aktarabilirsin.
+        * Veri akışı root to child
+    
+    Bu işlemi yaparken root component'lerden alınan probl'lar isteği bağlı olarak tür data ve başka yönleender kontrole alınabilir.
+    probs:{
+        names:{
+            type: Strings
+        }
+    }
+
+    Bunun yanında problem root elementinden string boolean array olarak alt objelere gönderilebilir. Proje içerisindeki ctiys buna bir
+    örnektir. 
+
+    names : ["ahmet","efe","emin""kemal",]
+
+    şeklinde tanımlarsın root component içerininde child'ları çağırıdığın için datayı hangi child component'e göndereceksen onun 
+    içerisini <child v-bind:names="names" şeklinde gömderebilirisin. İlk names child tarafa probs'un adın diğer ise senin root 
+    elementindekinin adı
+
+Video23 -> Primitive(String , integer ,) Reference(object ,arr) şeklinde 2 farklı yapıldan bahsetti. Props'lar kullanıldığında eğer gönderilen data
+    tür Primitive ise bu data props'lara bir kopyası gönderiliyor ve datanın child vue'larıda değişimi mevcutu değişmez iken bu işlem Reference tip dataları
+    olduğunda props'lara datanın kendisi değil memory'de tutulan pointer adresi gönderildiği için datalar child'larda bozulabilir. Ornek olarak app -> Header ve 
+    footer'a data gönderip header'da bunu değiştriğimde footer'da değişmediğini (Primitive) bunun yanında ise index'de 2 tane aynı arrayi gönderip değiştiğini 
+    göstericem (Reference) Bu işlem uyarı veriyor ama dediği şekilde çalışıyor
+
+------------------------------------
+Burada video 24 adlı bir klasör yapıp onun üzerinden devam edicem.
+
+Video24 -> bir data child taraftan root'a nasıl Event dediğimiz bir yöntemle gönderilebileceğini gösterdi. Aslında mantık çok basit child tarafta bir Event()
+    create edip this.$event("func-adı","data")içersine " şeklinde 2 parametre veriyorsun ve sonrası root tarafta chilh objesine click adıp fonksiyon adı veriyorsun.
+    Daha sonra veri taşıma işlemi gerçekleşiyor. 
+
+Video25 -> EventBus adlı bir yapıdan bashetti ve burada biz 24'u video'da root -> child'dan datayı propbs la geri verirken ise $event kullanarak verdiğimizi data sonra
+    root tarafta bunu bekleyen bir fonksiyon olup böyle yapabileceğimiz söyledi. Bunu EventBus denilen farklı bir şekilde çözebileceğimiz sçyled. Basitce bir EventBus
+    create edip bunu component'lere import etmemizi ve component'lerin bir tanesinde bus.emit("fonk-adı","data") şeklinde bir işlem yapıp diğer component'lerde de
+    bus.on("func-adı", function(data) {}); şeklinde bir yapıp yapıp componenler arası data paylaşabileceğimiz söykedi. 
+    * Başka vue objelerinde EventBus.$on üzerinde kafana göre nesne oluşturabilirisin created: { } i mounted : { } vs.
+    * Eventbus.$on("fun-adı", (data) => {}) formatı şeklinde yapman gerekiyor,
+
+Video26 -> Burada Vue'da bir New Vue objesinin life cyle'ından bahsetti. Bir obje için aşağıdaki adamlar vardır. Bunlara dahha sonra tekrar bakılacak
+    * beforeCreate ()   -->
+    * created()         -->
+    * beforeMounted()   -->
+    * mounted()         -->
+    * beforeUpdate()    -->
+    * updated()         --> 
+
+Video27 -> Vuejs Slot mantığından bahsetti. Parent vue'daki bir datanın child tarafta tekrar tekrar create edilmeden slot mantığına göre nasıl yapabileceğimizi anlattı.
+    Basitçe slot'lar Parent vue'ya bir kaç html elemeni ekleyip ve bunlara isim verip bunları import ettiğin child component tagi arasında yazmak ve yazdığın child componentler
+    gidip o datalara uygun slot tagları açıp taasarımını yapma işlemidir. Proje üzerinde Slot.vue adlı bir file var ve içerisinde kendi headeri bunun
+    yanında <slot></slot> tagleri var. Normalde parent tarafta statick olarak birkaç datayı slot taglarine ekleyeyip child'a göndermek için
+    sadece <slot></slot> tagleri yeterlidir fakat. Doğrundan basmak yeri vuejs Parent tarafta slotlar için kullanılacak data'lara slot=""
+    attribute verip bunları child tarafta istediği sırada yönebilmesi veya istediği alıp kullnaması özelliğini verir.
+---------------------------------------
+Burada video 28 adlı bir klasör yapıp onun üzerinden devam edicem.
+
+Video28 -> Vuejs'de Dynamic content adlı bir yapı ve bu yapı sayesinde kullanıcıya dinamik olarak content gösterme ve gizleme işlemi
+    yapılabiliyor. About.vue ve Index.vue isimli 2 tane vue oluşturup bunları App.vue içerisine import edip bir butuna bağlayıp 
+    butona tıklandığında tek sefer ya About yada Index sayfa içeriği gösteriecelk.
+
+---------------------------------------
+Burada video 29 adlı bir klasör yapıp onun üzerinden devam edicem çünkü bir blog projesi yapıyor ve onun üzerinden geliştirme yapıypr
+
+Video29 -> Burada basitçe bir blogAdd formu oluşturve girdiği dataları v-model kullanarak farklı objelerde prereview olarak gösterdi.
+
+Video30 -> Checkbox ekleyip bunları v-model ile bağlayıp dinamik şekilde data almayı gösterdi.
+
+Video31 -> Burada ise select etiketini kullanmayı ve v-model ile data almayı gösteri.
+
+Video32 -> Burada alınan dataları vue-resource module ile post get istekleri kullanarak göndermeyi gösterdi. İlk önce npm install vue-resource
+    şeklinde inidirp daha sonra main.js'e import ediyoruz. Sonraki adıml olarak projenin istediğimiz yerine kullanılıyoruz. Burada istek attım
+    ama bu sırada cors hatası haldım. Video izlemeye devam edicem kendi ortamında bunu tekrar edicem biletsin. (Kendi kendine düzeldi)
+
+Video33 -> Burada ise ilk olarak showBlogs.vue adlı bir dosya açıp ,vue-resource kullanarak get request attırıp daha sonra aldığı 
+    datayı ekrana bastırdı.
+
+Video34 -> Burada ise "v-model , v-bind , v-if" şeklindeki directive'lerin custom olarak nasıl yapılabileceğin bahsetti. Bu işlem için ilk 
+    olarak main.js'e directive create edip daha sonra showBlogs üzerinde uygulamasını yapacağım. 
+    * Kullanımı basit olarak bir objenin içerisine girip v-custom-directive-adı verip bırakamk olabilir fakat bunun yanında mesela
+        v-erdem:test="'elma'" şeklinde birşey verip hem 'test' argümanı hemde 'elma' verisii gönderbilirisin.
+    * v-erdem:test="" içerisne array veya obje yazmayacaksan string yazacaksan "'birşeley'" şeklinde olmalı
+    * Vue lifecyle'daki fonksiyonlar olduğu gibi custom directive'lerinde kendine ait fonsiyonları var.
+        * bind() -->
+        * inserted () -->
+        * update() -->
+        * componentUpdated() -->
+        * unbind() -->
+    * Bunun yanında bir custom directive create edileceği zaman 3 data bekler (binding ve vnode readlonly dr)
+        * el -> bind edilmiş elementi döner ve bunun üzerinden mevcut elemintin genel özellikleriyle oynayabilirsin.
+        * binding -> bind edilmiş nesne üzerinde custom directive içerisinde verilmiş dataları döner v-erdem:test="kemal" test ve 
+            erdem verisini döner
+        * vnode -> doğrudan dom nesnesi üzerinde elemente erişmene izin verir
+
+Video35 -> Burada ise custom filter'lardan bahsetti bir datayı {{ data | custom}} alıp daha sonra pipe'larayarak görünütü olarak
+    oynanabileceğinden bahsetti. Burada değişim tabikide backend'de dokunmmuyor sadece tasarımsal olarak yapılıypr. Bunun için
+    main.js' filter create edip tanımlama yapmak ve showBlogs içerisinde kullanmak gerekiyor. Burada Uppercase ve Capitalize oluştutrarak
+    işlemi gerçekleştirdim.
