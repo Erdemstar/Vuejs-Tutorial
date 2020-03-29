@@ -134,3 +134,14 @@ Video35 -> Burada ise custom filter'lardan bahsetti bir datayı {{ data | custom
     oynanabileceğinden bahsetti. Burada değişim tabikide backend'de dokunmmuyor sadece tasarımsal olarak yapılıypr. Bunun için
     main.js' filter create edip tanımlama yapmak ve showBlogs içerisinde kullanmak gerekiyor. Burada Uppercase ve Capitalize oluştutrarak
     işlemi gerçekleştirdim.
+---------------------------------------
+Burada video 36 adlı bir klasör yapıp onun üzerinden devam edicem 
+
+Video36 -> Burada Search bar yapıp aldığı datayı mevcut post datası içerisinde aratıp daha sonra ilgili olanları getirmek için bir işlem 
+    yaptı fakat ben bunu yapamadım
+
+Video37 -> Burada ise local olarak filters ve directives tanımlaması yaptı
+
+Video38 -> Bir kodun birden fazla yerde aynı şekilde kullannılmasını engelleyen mixins yapısından bahsetti. Burada bir fonk veya Benzer
+    bir yapıyı mixins içerisinde tanımlayıp birden fazla yerde çağırarak kullanıyorsun. Bunun içinde bir örnek yapmadım. Mantık burada
+    bulunsun ihtiyacım olduğunda yaparım
