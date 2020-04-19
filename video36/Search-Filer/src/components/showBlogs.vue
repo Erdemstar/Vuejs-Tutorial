@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       postData: [],
-      searchData: "",
+      searchData: ""
     };
   },
   created() {
@@ -27,12 +27,8 @@ export default {
         this.postData = response.body.slice(0, 10);
       });
   },
-  methods: {
-    
-  },
-  computed: {
-
-  },
+  methods: {},
+  computed: {},
   filters: {
     upperCase: function(value) {
       return value.toUpperCase();
@@ -48,7 +44,7 @@ export default {
             .slice(4, 10);
       }
     }
-  },
+  }
 };
 </script>
 

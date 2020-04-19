@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <keep-alive>
-      <component v-bind:is="component"></component>
-    </keep-alive>
-    <button v-on:click="changeComponents">Change component</button>
+    <router-view></router-view>
   </div>
 </template>
 

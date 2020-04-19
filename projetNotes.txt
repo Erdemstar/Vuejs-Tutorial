@@ -145,3 +145,11 @@ Video37 -> Burada ise local olarak filters ve directives tanımlaması yaptı
 Video38 -> Bir kodun birden fazla yerde aynı şekilde kullannılmasını engelleyen mixins yapısından bahsetti. Burada bir fonk veya Benzer
     bir yapıyı mixins içerisinde tanımlayıp birden fazla yerde çağırarak kullanıyorsun. Bunun içinde bir örnek yapmadım. Mantık burada
     bulunsun ihtiyacım olduğunda yaparım
+---------------------------------------
+Burada video 96 adlı bir klasör yapıp onun üzerinden devam edicem 
+
+Video39 -> Burada vue.js üzerinde router mekanizmasından bashetti sayfa değil çoklu sayfalar arasonda kullanıcıyı yönlendirne işleminden
+    bahsetti. Bende bu metodu showBlogs ve addBlogs üzerinde ayırarak uygulayacağım. Yapılası gereken adımlar aşağıdaki gibidir.
+        * npm install vue-router
+        * import VueRouter from 'vue-router'  (main.js)
+        * Vue.use(VueRouter)    (main.js)
